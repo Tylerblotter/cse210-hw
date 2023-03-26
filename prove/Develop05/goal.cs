@@ -1,26 +1,46 @@
-public abstract class Goal {
-    private string name;
-    private int value;
+public class Goal
+{
 
-    public Goal(string name, int value) {
-        this.name = name;
-        this.value = value;
+    public string name = "";
+    public int points = 0;
+    public bool completed = false;
+
+    public Goal(string nameOfGoal, int numPoints)
+    {
+        name = nameOfGoal;
+        points = numPoints;
+    }
+   
+    public virtual int GetPoints()
+    { 
+        return points;
     }
 
-    public string GetName() {
+    public string GetName()
+    {
         return name;
     }
 
-    public int GetValue() {
-        return value;
+    public virtual void MarkCompleted()
+    {
+        completed = true;
     }
 
-    // Check if the goal is complete
-    public abstract bool IsComplete();
+    public virtual string DisplayCount()
+    {
+        return "";
+    }
 
-    // Get the progress of the goal
-    public abstract string GetProgress();
+    public bool IsCompleted()
+    {
+        if (completed)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
-    // Record an event for the goal
-    public abstract void RecordEvent();
 }

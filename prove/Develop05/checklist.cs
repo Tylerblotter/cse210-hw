@@ -1,27 +1,31 @@
-public class ChecklistGoal : Goal {
-    private int count;
-    private int target;
-    private bool completed;
-
-    public ChecklistGoal(string name, int value, int target) : base(name, value) {
-        count = 0;
-        this.target = target;
-        completed = false;
+public class Checklist : Goal
+{
+    public int amountGoal = 0;
+    public int counter = 0;
+    public Checklist(string nameOfGoal, int numPoints, int timesChecked) : base(nameOfGoal, numPoints)
+    {
+        name = nameOfGoal;
+        points = numPoints;
+        amountGoal = timesChecked;
     }
 
-    public override bool IsComplete() {
-        return completed;
-    }
-
-    public override string GetProgress() {
-        return $"Completed {count}/{target} times";
-    }
-
-    public override void RecordEvent() {
-        count++;
-        if (count == target) {
+    public override void MarkCompleted()
+    {
+        counter ++;
+        if (counter >= amountGoal)
+        {
             completed = true;
         }
+        
+        else
+        {
+            completed = false;
+        }
+    }
+
+     public override string DisplayCount()
+    {
+        string checker = $"[{counter}/{amountGoal}]";
+        return checker;
     }
 }
-

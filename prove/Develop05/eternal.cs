@@ -1,19 +1,14 @@
-public class EternalGoals : Goal {
-    private int count;
-
-    public EternalGoals(string name, int value) : base(name, value) {
-        count = 0;
+public class Eternal : Goal
+{
+    public Eternal(string nameOfGoal, int numPoints) : base(nameOfGoal, numPoints)
+    {
+        name = nameOfGoal;
+        points = numPoints;
     }
 
-    public override bool IsComplete() {
-        return false;
+    public override void MarkCompleted()
+    {
+        completed = false;
     }
 
-    public override string GetProgress() {
-        return $"Recorded {count} times";
-    }
-
-    public override void RecordEvent() {
-        count++;
-    }
 }
